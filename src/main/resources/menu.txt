@@ -1,0 +1,31 @@
+=====================================================================================================
+
+      Ejercicio de postulantes - Sitrack
+
+  Esta aplicación de consola permite obtener
+  información sobre películas y series,
+  consumiendo servicios de la API OMDb.
+  (Muestra la primera página, no el total
+  de los resultados!)
+
+=====================================================================================================
+
+Uso:
+
+    buscar <nombre> [opciones...]     - Buscar metraje por nombre
+
+Opciones:
+
+    -t <tipo>           - Tipo puede ser 'series', 'movie' o 'episode'
+    -y <año>            - Año de salida del metraje
+    -r <año> <año>      - Para especificar un periodo de tiempo en lugar de un año específico
+
+Ejemplos:
+
+    buscar batman -y 1989
+    buscar tom_and_jerry -t series
+    buscar interstellar
+    buscar seinfeld -t movie -r 1990 2010
+
+=====================================================================================================
+
