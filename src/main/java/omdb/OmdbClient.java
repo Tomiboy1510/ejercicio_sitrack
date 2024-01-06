@@ -96,7 +96,7 @@ public class OmdbClient {
     /**
      * Hace una petición GET Http al Uri pasado por parámetro y devuelve el resultado.
      * @param uri Uri al que enviar la petición
-     * @return un objeto {@link HttpResponse<String> HttpResponse<String>} cuyo cuerpo contiene
+     * @return un objeto {@link HttpResponse HttpResponse} cuyo cuerpo contiene
      * el Json con la respuesta a la query
      * @throws IOException si falla la petición
      * @throws InterruptedException si es interrumpido antes de recibir respuesta
