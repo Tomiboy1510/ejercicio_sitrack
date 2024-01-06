@@ -86,7 +86,7 @@ public class Main {
      */
     private static void printMenu() {
 
-        try (Scanner file = new Scanner(new File("src/main/resources/menu.txt"))) {
+        try (Scanner file = new Scanner(new File("target/classes/menu.txt"))) {
             while (file.hasNextLine()) {
                 System.out.println(file.nextLine());
             }
