@@ -26,7 +26,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        String input = "";
+        String input;
         MovieData[] movies = new MovieData[]{};
         RequestParams params = new RequestParams();
         OmdbClient client = new OmdbClient(baseUrl, apiKey);

@@ -50,6 +50,8 @@ public class MovieDataComposite implements MovieData {
     @Override
     public boolean equals(Object obj) {
         if (! (obj instanceof MovieData)) return false;
-        return getId() == ((MovieData) obj).getId();
+        if (getId() == null) return false;
+        if (((MovieData) obj).getId() == null) return false;
+        return getId().equals(((MovieData) obj).getId());
     }
 }
