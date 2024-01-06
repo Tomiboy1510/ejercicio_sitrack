@@ -86,12 +86,15 @@ public class Main {
      */
     private static void printMenu() {
 
-        try (Scanner file = new Scanner(new File("target/classes/menu.txt"))) {
-            while (file.hasNextLine()) {
-                System.out.println(file.nextLine());
+        Scanner sc = null;
+        try {
+            sc = new Scanner(Main.class.getClassLoader().getResourceAsStream("menu.txt"));
+            while (sc.hasNextLine()) {
+                System.out.println(sc.nextLine());
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("No se encontró el archivo menu.txt");
+            sc.close();
+        } catch (NullPointerException e) {
+            System.out.println("No se pudo abrir el archivo menu.txt");
         }
     }
 

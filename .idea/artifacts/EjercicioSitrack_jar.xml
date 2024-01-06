@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="EjercicioSitrack:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/EjercicioSitrack_jar</output-path>
+    <root id="root">
+      <element id="archive" name="EjercicioSitrack.jar">
+        <element id="module-output" name="EjercicioSitrack" />
+      </element>
+      <element id="directory" name="libs">
+        <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.10.1" />
+      </element>
+    </root>
+  </artifact>
+</component>
