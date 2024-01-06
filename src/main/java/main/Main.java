@@ -160,7 +160,6 @@ public class Main {
                     params.setYearRange(tokens[i+1], tokens[i+2]);
                     break;
                 default:
-
             }
         }
     }
