@@ -1,9 +1,10 @@
 package moviedata;
 
-import moviedata.MovieData;
-
 import java.util.ArrayList;
 
+/**
+ * Implementa la interfaz {@link MovieData MovieData}, representa un elemento que tiene otros elementos anidados
+ */
 public class MovieDataComposite implements MovieData {
 
     private final String name;
@@ -14,6 +15,10 @@ public class MovieDataComposite implements MovieData {
         this.name = name;
     }
 
+    /**
+     * Añade un nodo a los niños de este
+     * @param c
+     */
     public void addChild(MovieData c) {
         children.add(c);
     }

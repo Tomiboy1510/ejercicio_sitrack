@@ -1,5 +1,10 @@
 package omdb;
 
+/**
+ * Objeto que contiene los parámetros para generar una query a la API. No tiene mucha funcionalidad,
+ * pero facilita el crear una query donde el número y el orden de los argumentos es variable.
+ * No puede tener simultáneamente un año y un rango de años. El setear uno de los dos deshabilita el otro.
+ */
 public class RequestParams {
 
     private String title;
@@ -42,6 +47,9 @@ public class RequestParams {
         this.id = id;
     }
 
+    /**
+     * Setea todos los campos a null
+     */
     public void reset() {
         title = null;
         type = null;

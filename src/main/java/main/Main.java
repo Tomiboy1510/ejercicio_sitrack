@@ -1,3 +1,5 @@
+package main;
+
 import moviedata.MovieData;
 import omdb.OmdbClient;
 import omdb.RequestParams;
@@ -9,6 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 
+/**
+ * Clase principal, se encarga de mostrar el menú donde se ve la sintaxis de uso del programa,
+ * se parsean los comandos que el usuario ingresa en la consola, se construye un objeto con los
+ * parámetros de la petición a la API y se llama al cliente de OMDB para que devuelva la información
+ * de las películas encontradas. En resumen, cumple el rol de interfaz con el usuario.
+ */
 public class Main {
 
     private static final String baseUrl = "http://www.omdbapi.com/";
@@ -18,7 +26,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        String input;
+        String input = "";
         MovieData[] movies = new MovieData[]{};
         RequestParams params = new RequestParams();
         OmdbClient client = new OmdbClient(baseUrl, apiKey);
@@ -27,7 +35,7 @@ public class Main {
 
         while (true) {
 
-            // Obtener input del usuario
+            // Obtener input
             System.out.print("> ");
             input = sc.nextLine();
             String[] tokens = input.split("\\s+");
@@ -65,7 +73,7 @@ public class Main {
             }
 
             // Mostrar resultados
-            System.out.println("Mostrando " + movies.length + " resultados:\n\n");
+            System.out.println("Mostrando " + movies.length + " resultados:\n");
             for (int i = 0; i < movies.length; ++i)
                 System.out.println((i+1)+ ". " + movies[i].toString());
             if (movies.length != 0)
@@ -73,6 +81,9 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra el menú principal, que está en un archivo de texto
+     */
     private static void printMenu() {
 
         try (Scanner file = new Scanner(new File("src/main/resources/menu.txt"))) {
@@ -84,6 +95,18 @@ public class Main {
         }
     }
 
+    /**
+     * Valida una línea (dividida en tokens) ingresada por el usuario para ver si constituye un comando válido
+     * @param tokens Palabras que componen la línea ingresada
+     * @return true si los tokens constituyen un comando válido, false si:
+     *  - no hay tokens
+     *  - hay uno solo pero no es un número entero
+     *  - si hay más de 1 token pero el primero no es "buscar"
+     *  - si luego de -t no viene un tipo válido
+     *  - si luego de -y no viene un número entero
+     *  - si luego de -r no vienen dos números enteros
+     *  - si luego de -r vienen dos números enteros pero el primero es más grande que el segundo
+     */
     private static boolean validateInput(String[] tokens) {
 
         // Hay mejores formas de hacer esto pero seguro que el objetivo del ejercicio no es programar un parser
@@ -115,7 +138,14 @@ public class Main {
         return true;
     }
 
-    public static void setParams(RequestParams params, String[] tokens) {
+    /**
+     * Setea los campos de un objeto {@link RequestParams RequestParams} con el título y las opciones pasadas
+     * por el usuario (año, tipo, rango de años)
+     * @param params objeto donde se van a establecer los parámetros para una petición a la API
+     * @param tokens Tokens que componen un comando válido
+     * (tiene que haber sido validado previamente por {@link #validateInput validateInput}
+     */
+    private static void setParams(RequestParams params, String[] tokens) {
 
         params.setTitle(tokens[1]);
         for (int i = 2; i < tokens.length; ++i) {
@@ -130,7 +160,7 @@ public class Main {
                     params.setYearRange(tokens[i+1], tokens[i+2]);
                     break;
                 default:
-                    ;
+
             }
         }
     }

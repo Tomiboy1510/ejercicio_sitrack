@@ -1,7 +1,8 @@
 package moviedata;
 
-import moviedata.MovieData;
-
+/**
+ * Implementa la interfaz {@link MovieData MovieData}, representa un elemento simple (nodo hoja)
+ */
 public class MovieDataLeaf implements MovieData {
 
     private final String name;
