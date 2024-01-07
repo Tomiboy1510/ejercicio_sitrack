@@ -5,11 +5,11 @@ import omdb.OmdbClient;
 import omdb.RequestParams;
 import utils.StringUtils;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.io.File;
 
 /**
  * Clase principal, se encarga de mostrar el menú donde se ve la sintaxis de uso del programa,
@@ -53,8 +53,14 @@ public class Main {
                     params.setId(id);
                     MovieData detalles = client.getById(params);
                     System.out.println(detalles.toString());
+                } catch (IOException e) {
+                    System.out.println("Error al hacer la petición!");
+                } catch (InterruptedException e) {
+                    System.out.println("Error: El hilo fue interrumpido antes de recibir una respuesta del servidor!");
+                } catch (URISyntaxException e) {
+                    System.out.println("Error: URL mal formada!");
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("Entrada inválida!");
+                    System.out.println("Entrada inválida");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -65,11 +71,15 @@ public class Main {
             setParams(params, tokens);
 
             // Enviar petición
+            //movies = new MovieData[]{};
             try {
                 movies = client.search(params);
-            } catch (Exception e) {
-                e.printStackTrace();
-                movies = new MovieData[]{};
+            } catch (IOException e) {
+                System.out.println("Error al hacer la petición!");
+            } catch (InterruptedException e) {
+                System.out.println("Error: El hilo fue interrumpido antes de recibir una respuesta del servidor!");
+            } catch (URISyntaxException e) {
+                System.out.println("Error: URL mal formada!");
             }
 
             // Mostrar resultados
@@ -86,9 +96,8 @@ public class Main {
      */
     private static void printMenu() {
 
-        Scanner sc = null;
         try {
-            sc = new Scanner(Main.class.getClassLoader().getResourceAsStream("menu.txt"));
+            Scanner sc = new Scanner(Main.class.getClassLoader().getResourceAsStream("menu.txt"));
             while (sc.hasNextLine()) {
                 System.out.println(sc.nextLine());
             }
