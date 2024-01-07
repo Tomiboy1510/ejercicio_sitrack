@@ -1,4 +1,5 @@
 FROM eclipse-temurin
-COPY /target /tmp/target
-WORKDIR /tmp
-ENTRYPOINT ["java", "-cp", "/target/classes", "main.Main"]
+COPY /out/artifacts/EjercicioSitrack_jar /tmp/EjercicioSitrack_jar
+WORKDIR /tmp/EjercicioSitrack_jar
+# RUN pwd && ls
+ENTRYPOINT ["java", "-jar", "EjercicioSitrack.jar"]
