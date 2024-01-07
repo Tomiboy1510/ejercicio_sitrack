@@ -73,7 +73,6 @@ public class Main {
             setParams(params, tokens);
 
             // Enviar petición
-            //movies = new MovieData[]{};
             try {
                 movies = client.search(params);
             } catch (IOException e) {
