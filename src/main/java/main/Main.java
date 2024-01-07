@@ -37,6 +37,8 @@ public class Main {
 
             // Obtener input
             System.out.print("> ");
+            while (! sc.hasNextLine())
+                ;
             input = sc.nextLine();
             String[] tokens = input.split("\\s+");
             if (! validateInput(tokens)) {
